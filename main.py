@@ -11,8 +11,8 @@ from sklearn.ensemble import RandomForestClassifier
 
 # %%
 # Load the dataset
-#file_path = r"C:\Users\ganna\PycharmProjects\DS-ASSIGNMENT-2\loan_approval_dataset.csv"
-file_path = r"C:\Users\elena\Downloads\archive\loan_approval_dataset.csv"
+file_path = r"C:\Users\ganna\PycharmProjects\DS-ASSIGNMENT-2\loan_approval_dataset.csv"
+#file_path = r"C:\Users\elena\Downloads\archive\loan_approval_dataset.csv"
 
 columns = [
     "Applicant_ID", "Age", "Income", "Credit_Score", "Loan_Amount", "Loan_Term",
@@ -47,8 +47,6 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_
 
 # %%
 #KNN
-from sklearn.neighbors import KNeighborsClassifier
-from sklearn.preprocessing import StandardScaler
 
 # 1. Feature Scaling (Critical for KNN!)
 scaler = StandardScaler()
@@ -86,6 +84,11 @@ y_pred = nb_classifier.predict(X_test)
 # evaluate the model
 accuracy = accuracy_score(y_test, y_pred)
 print(f"Accuracy: {accuracy}")
+
+# Confusion Matrix
+print("Confusion Matrix:")
+print(confusion_matrix(y_test, y_pred))
+
 print("Classification Report:")
 print(classification_report(y_test, y_pred))
 
@@ -105,13 +108,17 @@ y_pred_dt = dt_classifier.predict(X_test)
 # Evaluate the model
 accuracy_dt = accuracy_score(y_test, y_pred_dt)
 print(f"Decision Tree Accuracy: {accuracy_dt}")
+
+# Confusion Matrix
+print("Confusion Matrix:")
+print(confusion_matrix(y_test, y_pred))
+
 print("Decision Tree Classification Report:")
 print(classification_report(y_test, y_pred_dt))
 
 
 # %%
 # RANDOM FOREST IMPLEMENTATION
-from sklearn.ensemble import RandomForestClassifier
 
 # 1. Initialize Random Forest
 # (Use 100 trees and set random_state for reproducibility)
